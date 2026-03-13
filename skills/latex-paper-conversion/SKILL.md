@@ -29,12 +29,12 @@ Create a Python script (e.g., `convert_format.py`) to parse the source LaTeX fil
 ### Step 3: Systematic Fixing
 Perform generic fixes on the extracted body text before writing the final file, or in subsequent calls:
 - Convert math environment cases (e.g., `\begin{theorem}` to `\begin{Theorem}`).
-- Convert aggressive float placements like `[!t]` or `[h!]` to `[H]`.
+- Adjust aggressive float placements (e.g., `[!t]` or `[h!]`) to template-supported options. Avoid forcing `[H]` unless the `float` package is explicitly loaded.
 - Ensure `\includegraphics` paths are relative to the new `.tex` file location.
 - Convert `\begin{tabular}` to `\begin{tabularx}{\textwidth}` or use `\resizebox` if moving to a double-column layout.
 
 ### Step 4: Compilation & Debugging
-Run a build cycle (`pdflatex` -> `bibtex` -> `pdflatex`). Check the `.log` file using `grep_search` to systematically fix any packages conflicts, undefined commands, or compilation halts.
+Run a build cycle (`pdflatex` -> `bibtex` -> `pdflatex`). Check the `.log` file using `grep` or `rg` to systematically fix any packages conflicts, undefined commands, or compilation halts.
 
 ## Examples
 
